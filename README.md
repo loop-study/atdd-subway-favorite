@@ -134,17 +134,17 @@ Content-Length: 383
 ## 3단계 - 즐겨찾기 기능 구현
 
 ### 요구사항
-- [] 즐겨 찾기 기능을 구현하기
-  - [] 회원 별로 즐겨찾기를 관리할 수 있도록 기능변경
-  - [] TDD 사이클을 적용해서 구현
-  - [] 기존 로직에 대하여 테스트 작성 연습
-- [] 로그인이 필요한 API 요청 시 유효하지 않은 경우 401 응답 내려주기
-  - [] 내 정보 관리 / 즐겨 찾기 기능은 로그인 된 상태에서만 가능
-  - [] 비로그인이거나 유효하지 않을 경우 401 Unauthorized 응답
+- [x] 즐겨 찾기 기능을 구현하기
+  - [x] 회원 별로 즐겨찾기를 관리할 수 있도록 기능변경
+  - [x] TDD 사이클을 적용해서 구현
+  - [x] 기존 로직에 대하여 테스트 작성 연습
+- [x] 로그인이 필요한 API 요청 시 유효하지 않은 경우 401 응답 내려주기
+  - [x] 내 정보 관리 / 즐겨 찾기 기능은 로그인 된 상태에서만 가능
+  - [x] 비로그인이거나 유효하지 않을 경우 401 Unauthorized 응답
 
 ### 요구사항 설명
 #### Request / Response
-생성
+- [x] 생성
 ~~~
 POST /favorites HTTP/1.1
 authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJpZFwiOjEsXCJlbWFpbFwiOlwiZW1haWxAZW1haWwuY29tXCIsXCJwYXNzd29yZFwiOlwicGFzc3dvcmRcIixcImFnZVwiOjIwLFwicHJpbmNpcGFsXCI6XCJlbWFpbEBlbWFpbC5jb21cIixcImNyZWRlbnRpYWxzXCI6XCJwYXNzd29yZFwifSIsImlhdCI6MTYxNjQyMzI1NywiZXhwIjoxNjE2NDI2ODU3fQ.7PU1ocohHf-5ro78-zJhgjP2nCg6xnOzvArFME5vY-Y
@@ -172,7 +172,7 @@ Date: Mon, 22 Mar 2021 14:27:37 GMT
 Location: /favorites/1
 ~~~
 
-조회
+- [x] 조회
 ~~~
 GET /favorites HTTP/1.1
 authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJpZFwiOjEsXCJlbWFpbFwiOlwiZW1haWxAZW1haWwuY29tXCIsXCJwYXNzd29yZFwiOlwicGFzc3dvcmRcIixcImFnZVwiOjIwLFwicHJpbmNpcGFsXCI6XCJlbWFpbEBlbWFpbC5jb21cIixcImNyZWRlbnRpYWxzXCI6XCJwYXNzd29yZFwifSIsImlhdCI6MTYxNjQyMzI1NywiZXhwIjoxNjE2NDI2ODU3fQ.7PU1ocohHf-5ro78-zJhgjP2nCg6xnOzvArFME5vY-Y
@@ -210,8 +210,8 @@ Connection: keep-alive
     }
 ]
 ~~~
-
-삭제
+ 
+- [x] 삭제
 ~~~
 DELETE /favorites/1 HTTP/1.1
 authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJpZFwiOjEsXCJlbWFpbFwiOlwiZW1haWxAZW1haWwuY29tXCIsXCJwYXNzd29yZFwiOlwicGFzc3dvcmRcIixcImFnZVwiOjIwLFwicHJpbmNpcGFsXCI6XCJlbWFpbEBlbWFpbC5jb21cIixcImNyZWRlbnRpYWxzXCI6XCJwYXNzd29yZFwifSIsImlhdCI6MTYxNjQyMzI1NywiZXhwIjoxNjE2NDI2ODU3fQ.7PU1ocohHf-5ro78-zJhgjP2nCg6xnOzvArFME5vY-Y
