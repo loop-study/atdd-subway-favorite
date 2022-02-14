@@ -1,6 +1,7 @@
 package nextstep.member.ui;
 
 import nextstep.auth.authorization.AuthenticationPrincipal;
+import nextstep.member.application.FavoriteService;
 import nextstep.member.application.dto.FavoriteRequest;
 import nextstep.member.application.dto.FavoriteResponse;
 import nextstep.member.domain.LoginMember;
