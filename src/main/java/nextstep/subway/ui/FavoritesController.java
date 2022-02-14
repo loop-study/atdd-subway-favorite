@@ -1,9 +1,9 @@
-package nextstep.member.ui;
+package nextstep.subway.ui;
 
 import nextstep.auth.authorization.AuthenticationPrincipal;
-import nextstep.member.application.FavoriteService;
-import nextstep.member.application.dto.FavoriteRequest;
-import nextstep.member.application.dto.FavoriteResponse;
+import nextstep.subway.applicaion.FavoriteService;
+import nextstep.subway.applicaion.dto.FavoriteRequest;
+import nextstep.subway.applicaion.dto.FavoriteResponse;
 import nextstep.member.domain.LoginMember;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

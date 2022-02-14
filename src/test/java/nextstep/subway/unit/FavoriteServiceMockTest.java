@@ -1,10 +1,10 @@
 package nextstep.subway.unit;
 
-import nextstep.member.application.FavoriteService;
-import nextstep.member.application.dto.FavoriteRequest;
-import nextstep.member.application.dto.FavoriteResponse;
-import nextstep.member.domain.Favorite;
-import nextstep.member.domain.FavoriteRepository;
+import nextstep.subway.applicaion.FavoriteService;
+import nextstep.subway.applicaion.dto.FavoriteRequest;
+import nextstep.subway.applicaion.dto.FavoriteResponse;
+import nextstep.subway.domain.Favorite;
+import nextstep.subway.domain.FavoriteRepository;
 import nextstep.subway.applicaion.StationService;
 import nextstep.subway.domain.Station;
 import org.junit.jupiter.api.BeforeEach;
