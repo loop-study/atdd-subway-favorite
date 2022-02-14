@@ -66,14 +66,23 @@ class FavoriteAcceptanceTest extends AcceptanceTest {
     }
 
     /**
+     * Givne 즐겨찾기 생성을 요청
      * When 즐겨찾기 목록 조회 요청
      * Then 즐겨찾기 목록 조회됨
      */
     @DisplayName("즐겨찾기 목록 조회를 요청.")
     @Test
     void getFavorites() {
+        // Given
+        ExtractableResponse<Response> 즐겨찾기_생성_요청 = 즐겨찾기_생성_요청(accessToken, 강남역, 삼성역);
 
+        // When
+        ExtractableResponse<Response> response = 즐겨찾기_목록_조회_요청(accessToken);
+
+        // Then
+        assertThat(response.statusCode()).isEqualTo(HttpStatus.OK.value());
     }
+
     /**
      * When 즐겨찾기 삭제 요청
      * Then 즐겨찾기 삭제됨
