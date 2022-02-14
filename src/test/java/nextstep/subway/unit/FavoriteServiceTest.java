@@ -3,7 +3,6 @@ package nextstep.subway.unit;
 import nextstep.member.application.FavoriteService;
 import nextstep.member.application.dto.FavoriteRequest;
 import nextstep.member.application.dto.FavoriteResponse;
-import nextstep.member.domain.FavoriteRepository;
 import nextstep.subway.domain.Station;
 import nextstep.subway.domain.StationRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -22,8 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 class FavoriteServiceTest {
     @Autowired
     private StationRepository stationRepository;
-    @Autowired
-    private FavoriteRepository favoriteRepository;
     @Autowired
     private FavoriteService favoriteService;
 
@@ -51,7 +48,7 @@ class FavoriteServiceTest {
         favoriteService.createFavorite(createRequest(강남역, 역삼역));
 
         // when
-        List<FavoriteResponse> list = favoriteService.getFavorites();
+        List<FavoriteResponse> list = favoriteService.findAll();
 
         // then
         assertThat(list).hasSize(1);
@@ -70,7 +67,7 @@ class FavoriteServiceTest {
         favoriteService.removeFavorite(favorite.getId());
 
         // then
-        List<FavoriteResponse> list = favoriteService.getFavorites();
+        List<FavoriteResponse> list = favoriteService.findAll();
         assertThat(list).hasSize(0);
     }
 

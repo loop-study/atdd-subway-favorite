@@ -29,7 +29,7 @@ public class FavoritesController {
 
     @GetMapping()
     public ResponseEntity<List<FavoriteResponse>> getFavorites(@AuthenticationPrincipal LoginMember loginMember) {
-        List<FavoriteResponse> response = favoriteService.getFavorites();
+        List<FavoriteResponse> response = favoriteService.findAll();
         return ResponseEntity.ok().body(response);
     }
 

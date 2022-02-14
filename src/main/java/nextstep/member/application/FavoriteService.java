@@ -30,7 +30,7 @@ public class FavoriteService {
         return FavoriteResponse.of(createFavorite);
     }
 
-    public List<FavoriteResponse> getFavorites() {
+    public List<FavoriteResponse> findAll() {
         return favoriteRepository.findAll().stream()
                 .map(FavoriteResponse::of)
                 .collect(Collectors.toList());
