@@ -84,13 +84,35 @@ class FavoriteAcceptanceTest extends AcceptanceTest {
     }
 
     /**
-     * When 즐겨찾기 삭제 요청
-     * Then 즐겨찾기 삭제됨
+     * Givne 즐겨찾기 생성을 요청
+     * When 즐겨찾기 제거 요청
+     * Then 즐겨찾기 제거됨
      */
-    @DisplayName("즐겨찾기 생성을 요청.")
+    @DisplayName("즐겨찾기 제거를 요청.")
     @Test
     void deleteFavorite() {
+        // Given
+        ExtractableResponse<Response> createResponse = 즐겨찾기_생성_요청(accessToken, 강남역, 삼성역);
 
+        // When
+        ExtractableResponse<Response> deleteResponse = 즐겨찾기_제거_요청(accessToken, createResponse.header("Location"));
+
+        // Then
+        assertThat(deleteResponse.statusCode()).isEqualTo(HttpStatus.NO_CONTENT.value());
+    }
+
+    /**
+     * When 비로그인 상태에서 즐겨찾기 생성을 요청
+     * Then 즐겨찾기 생성 요청이 실패함
+     */
+    @DisplayName("비로그인 상태에서 즐겨찾기 기능 요청 시 예외")
+    @Test
+    void offlineCreateFavoriteException() {
+        // When
+        ExtractableResponse<Response> createResponse = 비로그인_즐겨찾기_생성_요청(강남역, 삼성역);
+
+        // Then
+        assertThat(createResponse.statusCode()).isEqualTo(HttpStatus.UNAUTHORIZED.value());
     }
 
     private Map<String, String> createLineCreateParams(Long upStationId, Long downStationId) {

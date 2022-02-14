@@ -35,4 +35,8 @@ public class FavoriteService {
                 .map(FavoriteResponse::of)
                 .collect(Collectors.toList());
     }
+
+    public void removeFavorite(Long favoriteId) {
+        favoriteRepository.deleteById(favoriteId);
+    }
 }
