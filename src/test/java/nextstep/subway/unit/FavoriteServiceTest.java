@@ -1,9 +1,9 @@
 package nextstep.subway.unit;
 
-import nextstep.member.domain.Favorite;
+import nextstep.member.application.FavoriteService;
+import nextstep.member.application.dto.FavoriteRequest;
+import nextstep.member.application.dto.FavoriteResponse;
 import nextstep.member.domain.FavoriteRepository;
-import nextstep.subway.applicaion.dto.SectionRequest;
-import nextstep.subway.domain.Line;
 import nextstep.subway.domain.Station;
 import nextstep.subway.domain.StationRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -22,9 +22,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 class FavoriteServiceTest {
     @Autowired
     private StationRepository stationRepository;
-
     @Autowired
     private FavoriteRepository favoriteRepository;
+    @Autowired
+    private FavoriteService favoriteService;
 
     @DisplayName("즐겨찾기를 생성한다")
     @Test
@@ -34,7 +35,7 @@ class FavoriteServiceTest {
         Station 역삼역 = stationRepository.save(new Station("역삼역"));
 
         // when
-        Favorite favorite = favoriteRepository.save(new Favorite(강남역, 역삼역));
+        FavoriteResponse favorite = favoriteService.createFavorite(createRequest(강남역, 역삼역));
 
         // then
         assertThat(favorite).isNotNull();
@@ -47,10 +48,10 @@ class FavoriteServiceTest {
         Station 강남역 = stationRepository.save(new Station("강남역"));
         Station 역삼역 = stationRepository.save(new Station("역삼역"));
 
-        favoriteRepository.save(new Favorite(강남역, 역삼역));
+        favoriteService.createFavorite(createRequest(강남역, 역삼역));
 
         // when
-        List<Favorite> list = favoriteRepository.findAll();
+        List<FavoriteResponse> list = favoriteService.getFavorites();
 
         // then
         assertThat(list).hasSize(1);
@@ -63,13 +64,17 @@ class FavoriteServiceTest {
         Station 강남역 = stationRepository.save(new Station("강남역"));
         Station 역삼역 = stationRepository.save(new Station("역삼역"));
 
-        Favorite favorite = favoriteRepository.save(new Favorite(강남역, 역삼역));
+        FavoriteResponse favorite = favoriteService.createFavorite(createRequest(강남역, 역삼역));
 
         // when
-        favoriteRepository.deleteById(favorite.getId());
+        favoriteService.removeFavorite(favorite.getId());
 
         // then
-        List<Favorite> list = favoriteRepository.findAll();
+        List<FavoriteResponse> list = favoriteService.getFavorites();
         assertThat(list).hasSize(0);
+    }
+
+    private FavoriteRequest createRequest(Station source, Station target) {
+        return new FavoriteRequest(source.getId(), target.getId());
     }
 }
