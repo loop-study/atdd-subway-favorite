@@ -1,12 +1,16 @@
 package nextstep.subway.acceptance;
 
+import io.restassured.response.ExtractableResponse;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static nextstep.subway.acceptance.FavoriteSteps.*;
 import static nextstep.subway.acceptance.LineSteps.지하철_노선_생성_요청;
 import static nextstep.subway.acceptance.MemberSteps.*;
 import static nextstep.subway.acceptance.StationSteps.지하철역_생성_요청;
@@ -35,6 +39,8 @@ class FavoriteAcceptanceTest extends AcceptanceTest {
      */
     @BeforeEach
     public void setUp() {
+        super.setUp();
+
         강남역 = 지하철역_생성_요청("강남역").jsonPath().getLong("id");
         삼성역 = 지하철역_생성_요청("삼성역").jsonPath().getLong("id");
 
@@ -49,10 +55,14 @@ class FavoriteAcceptanceTest extends AcceptanceTest {
      * When 즐겨찾기 생성을 요청
      * Then 즐겨찾기 생성됨
      */
-    @DisplayName("즐겨찾기 생성을 요청.")
+    @DisplayName("즐겨찾기 생성을 요청")
     @Test
     void createFavorite() {
+        // When
+        ExtractableResponse<Response> response = 즐겨찾기_생성_요청(accessToken, 강남역, 삼성역);
 
+        // Then
+        assertThat(response.statusCode()).isEqualTo(HttpStatus.CREATED.value());
     }
 
     /**
